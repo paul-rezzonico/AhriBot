@@ -18,7 +18,7 @@ public class StatusManager {
     @Autowired
     private JDA jda;
 
-    @Scheduled(fixedRate = 300000) // Change status every 5 minutes
+    @Scheduled(fixedRate = 3600000) // Change status every hour
     public void updateStatus() {
         String newStatus = getStatus();
         jda.getPresence().setActivity(Activity.playing(newStatus));

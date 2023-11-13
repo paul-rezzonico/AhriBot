@@ -1,5 +1,6 @@
 package com.paulrezzonico.util;
 
+import com.paulrezzonico.facade.IQuoteManagerFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -13,9 +14,9 @@ import java.util.Objects;
 import java.util.Random;
 
 @Component
-public class QuoteManager {
+public class TxtQuoteManager implements IQuoteManagerFacade {
 
-    private static final Logger logger = LoggerFactory.getLogger(QuoteManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(TxtQuoteManager.class);
 
     public String getRandomQuote() {
         List<String> quotes = new ArrayList<>();

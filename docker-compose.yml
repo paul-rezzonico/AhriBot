@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+
+  discordbot:
+    build: .
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:password@mongodb:27017/ahribot
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:

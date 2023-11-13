@@ -1,17 +1,21 @@
 package com.paulrezzonico.command;
 
 import com.paulrezzonico.util.QuoteManager;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RandomQuoteCommand extends ListenerAdapter {
 
+    @Autowired
+    private QuoteManager quoteManager;
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.getMessage().getContentRaw().equals("!randomquote")) {
-            QuoteManager quoteManager = new QuoteManager();
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+        if (event.getName().equals("randomquote")) {
             String quote = quoteManager.getRandomQuote();
-            event.getChannel().sendMessage(quote).queue();
+            event.reply(quote).queue();
         }
     }
 }

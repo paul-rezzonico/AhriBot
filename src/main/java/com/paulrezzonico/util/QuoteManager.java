@@ -2,6 +2,8 @@ package com.paulrezzonico.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+@Component
 public class QuoteManager {
 
     private static final Logger logger = LoggerFactory.getLogger(QuoteManager.class);

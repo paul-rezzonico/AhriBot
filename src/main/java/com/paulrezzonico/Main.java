@@ -3,10 +3,14 @@ package com.paulrezzonico;
 import com.paulrezzonico.command.RandomQuoteCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.interactions.commands.build.CommandData;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -14,15 +18,30 @@ public class Main {
 
     @Value("${discord.bot.token}")
     private String token;
+
+    @Autowired
+    private RandomQuoteCommand randomQuoteCommand;
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
+
     @Bean
-    public JDA jda() throws InterruptedException {
-        return JDABuilder.createDefault(token)
-                .addEventListeners(new RandomQuoteCommand())
-                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
+    public JDA jda() throws Exception {
+        JDA jda = JDABuilder.createDefault(token)
+                .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
+                .setActivity(Activity.playing("Guiding you through spirit world..."))
+                .addEventListeners(randomQuoteCommand)
                 .build()
                 .awaitReady();
+
+        registerSlashCommands(jda);
+        return jda;
+    }
+
+    private void registerSlashCommands(JDA jda) {
+        jda.updateCommands().addCommands(
+                Commands.slash("randomquote", "Get a random quote from the Ahri")
+        ).queue();
     }
 }

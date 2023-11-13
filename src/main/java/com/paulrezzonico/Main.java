@@ -1,10 +1,10 @@
 package com.paulrezzonico;
 
 import com.paulrezzonico.command.RandomQuoteCommand;
+import com.paulrezzonico.util.TxtStatusManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,9 @@ public class Main {
     @Autowired
     private RandomQuoteCommand randomQuoteCommand;
 
+    @Autowired
+    private TxtStatusManager statusManager;
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
@@ -30,7 +33,7 @@ public class Main {
     public JDA jda() throws Exception {
         JDA jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
-                .setActivity(Activity.playing("Guiding you through spirit world..."))
+                .setActivity(Activity.playing(statusManager.getStatus()))
                 .addEventListeners(randomQuoteCommand)
                 .build()
                 .awaitReady();

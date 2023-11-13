@@ -13,9 +13,9 @@ public class RandomQuoteCommand extends ListenerAdapter {
     private IQuoteManagerFacade quoteManager;
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
-        if (event.getName().equals("randomquote")) {
+        if (event.getName().equals("quote")) {
             String quote = quoteManager.getRandomQuote();
-            event.reply(quote).queue();
+            event.reply("*" + quote + "*").queue();
         }
     }
 }

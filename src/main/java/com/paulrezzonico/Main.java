@@ -44,7 +44,7 @@ public class Main {
 
     private void registerSlashCommands(JDA jda) {
         jda.updateCommands().addCommands(
-                Commands.slash("randomquote", "Get a random quote from the Ahri")
+                Commands.slash("quote", "Get a random quote from the Ahri")
         ).queue();
     }
 }

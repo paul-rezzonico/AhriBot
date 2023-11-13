@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
 public class Main {
 
     @Value("${discord.bot.token}")
@@ -21,9 +23,6 @@ public class Main {
 
     @Autowired
     private RandomQuoteCommand randomQuoteCommand;
-
-    @Autowired
-    private StatusManager statusManager;
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
@@ -33,7 +32,6 @@ public class Main {
     public JDA jda() throws Exception {
         JDA jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
-                .setActivity(Activity.playing(statusManager.getStatus()))
                 .addEventListeners(randomQuoteCommand)
                 .build()
                 .awaitReady();

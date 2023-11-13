@@ -1,6 +1,6 @@
-package com.paulrezzonico.util;
+package com.paulrezzonico.DataProvider;
 
-import com.paulrezzonico.facade.IQuoteManagerFacade;
+import com.paulrezzonico.util.QuoteManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -11,33 +11,27 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 @Component
-public class TxtQuoteManager implements IQuoteManagerFacade {
+public class TextDataProvider implements IDataProvider {
 
-    private static final Logger logger = LoggerFactory.getLogger(TxtQuoteManager.class);
-
-    public String getRandomQuote() {
-        List<String> quotes = new ArrayList<>();
+    private static final Logger logger = LoggerFactory.getLogger(QuoteManager.class);
+    @Override
+    public List<String> getData(String path) {
+        List<String> data = new ArrayList<>();
         try {
-            InputStream in = getClass().getResourceAsStream("/VoiceLines.txt");
+            InputStream in = getClass().getResourceAsStream(path);
             BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(in)));
 
             String line;
             while ((line = reader.readLine()) != null) {
-                quotes.add(line);
+                data.add(line);
             }
             reader.close();
         } catch (Exception e) {
             logger.error("Error while reading quotes file", e);
         }
 
-        if (!quotes.isEmpty()) {
-            Random random = new Random();
-            return quotes.get(random.nextInt(quotes.size()));
-        }
-
-        return "No quotes found";
+        return data;
     }
 }

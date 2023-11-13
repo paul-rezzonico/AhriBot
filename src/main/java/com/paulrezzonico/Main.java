@@ -1,7 +1,7 @@
 package com.paulrezzonico;
 
 import com.paulrezzonico.command.RandomQuoteCommand;
-import com.paulrezzonico.util.TxtStatusManager;
+import com.paulrezzonico.util.StatusManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -23,7 +23,7 @@ public class Main {
     private RandomQuoteCommand randomQuoteCommand;
 
     @Autowired
-    private TxtStatusManager statusManager;
+    private StatusManager statusManager;
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

@@ -1,8 +1,10 @@
 package com.paulrezzonico;
 
+import com.paulrezzonico.command.PatCommand;
 import com.paulrezzonico.command.RandomQuoteCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class Main {
     @Autowired
     private RandomQuoteCommand randomQuoteCommand;
 
+    @Autowired
+    private PatCommand patCommand;
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
@@ -30,7 +35,10 @@ public class Main {
     public JDA jda() throws Exception {
         JDA jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
-                .addEventListeners(randomQuoteCommand)
+                .addEventListeners(
+                        randomQuoteCommand,
+                        patCommand
+                )
                 .build()
                 .awaitReady();
 
@@ -40,7 +48,9 @@ public class Main {
 
     private void registerSlashCommands(JDA jda) {
         jda.updateCommands().addCommands(
-                Commands.slash("quote", "Get a random quote from the Ahri")
+                Commands.slash("quote", "Get a random quote from Ahri"),
+                Commands.slash("pat", "Pat someone")
+                        .addOption(OptionType.USER, "user", "The user to pat", true)
         ).queue();
     }
 }

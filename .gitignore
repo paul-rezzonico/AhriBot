@@ -43,5 +43,5 @@ bin/
 
 ### Config ###
 *.log
-application.properties
+src/main/resources/application.properties
 .idea/

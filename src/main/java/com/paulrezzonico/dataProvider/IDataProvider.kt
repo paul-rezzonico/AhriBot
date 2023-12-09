@@ -1,7 +1,5 @@
-package com.paulrezzonico.DataProvider;
+package com.paulrezzonico.dataProvider
 
-import java.util.List;
-
-public interface IDataProvider {
-    List<String> getData(String path);
+interface IDataProvider {
+    fun getData(path: String): List<String>
 }

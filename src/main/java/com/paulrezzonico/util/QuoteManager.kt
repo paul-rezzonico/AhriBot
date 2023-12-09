@@ -1,27 +1,24 @@
-package com.paulrezzonico.util;
+package com.paulrezzonico.util
 
-import com.paulrezzonico.DataProvider.IDataProvider;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.Random;
+import com.paulrezzonico.dataProvider.IDataProvider
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
-public class QuoteManager {
-
+class QuoteManager {
     @Autowired
-    private IDataProvider dataProvider;
+    private val dataProvider: IDataProvider? = null
 
-    public String getRandomQuote() {
+    val randomQuote: String
+        get() {
+            val quotes = dataProvider!!.getData("/voiceLines.txt")
 
-        List<String> quotes = dataProvider.getData("/voiceLines.txt");
+            if (quotes.isNotEmpty()) {
+                val random = Random()
+                return quotes[random.nextInt(quotes.size)]
+            }
 
-        if (!quotes.isEmpty()) {
-            Random random = new Random();
-            return quotes.get(random.nextInt(quotes.size()));
+            return "No quotes found"
         }
-
-        return "No quotes found";
-    }
 }

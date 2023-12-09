@@ -1,37 +1,33 @@
-package com.paulrezzonico.DataProvider;
+package com.paulrezzonico.dataProvider
 
-import com.paulrezzonico.util.QuoteManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Component
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.*
 
 @Component
-public class TextDataProvider implements IDataProvider {
-
-    private static final Logger logger = LoggerFactory.getLogger(QuoteManager.class);
-    @Override
-    public List<String> getData(String path) {
-        List<String> data = new ArrayList<>();
+class TextDataProvider : IDataProvider {
+    override fun getData(path: String): List<String> {
+        val data: MutableList<String> = ArrayList()
         try {
-            InputStream in = getClass().getResourceAsStream(path);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(in)));
+            val `in` = javaClass.getResourceAsStream(path)
+            val reader = BufferedReader(InputStreamReader(Objects.requireNonNull(`in`)))
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                data.add(line);
+            var line: String
+            while ((reader.readLine().also { line = it }) != null) {
+                data.add(line)
             }
-            reader.close();
-        } catch (Exception e) {
-            logger.error("Error while reading quotes file", e);
+            reader.close()
+        } catch (e: Exception) {
+            logger.error("Error while reading quotes file", e)
         }
 
-        return data;
+        return data
+    }
+
+    companion object {
+        private val logger: Logger = LoggerFactory.getLogger(TextDataProvider::class.java)
     }
 }

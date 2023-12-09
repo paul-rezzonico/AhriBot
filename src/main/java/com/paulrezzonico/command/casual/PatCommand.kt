@@ -5,7 +5,6 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component
 import java.awt.Color
-import java.util.*
 
 @Component
 class PatCommand : ListenerAdapter() {

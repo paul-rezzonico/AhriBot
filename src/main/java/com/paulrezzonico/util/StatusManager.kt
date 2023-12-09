@@ -26,7 +26,7 @@ class StatusManager {
         get() {
             val status = dataProvider!!.getData("/status.txt")
 
-            if (!status.isEmpty()) {
+            if (status.isNotEmpty()) {
                 val random = Random()
                 return status[random.nextInt(status.size)]
             }

@@ -1,5 +1,6 @@
 package com.paulrezzonico;
 
+import com.paulrezzonico.command.admin.MuteCommand;
 import com.paulrezzonico.command.casual.PatCommand;
 import com.paulrezzonico.command.ahri.RandomQuoteCommand;
 import net.dv8tion.jda.api.JDA;
@@ -27,6 +28,9 @@ public class Main {
     @Autowired
     private PatCommand patCommand;
 
+    @Autowired
+    private MuteCommand muteCommand;
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
@@ -37,7 +41,8 @@ public class Main {
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
                 .addEventListeners(
                         randomQuoteCommand,
-                        patCommand
+                        patCommand,
+                        muteCommand
                 )
                 .build()
                 .awaitReady();

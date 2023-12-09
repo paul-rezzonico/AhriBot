@@ -3,6 +3,7 @@ version: '3.8'
 services:
   mongodb:
     image: mongo
+    container_name: mongodb
     volumes:
       - mongodb_data:/data/db
     environment:
@@ -13,6 +14,7 @@ services:
 
   discordbot:
     build: .
+    container_name: discordbot
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://root:password@mongodb:27017/ahribot
     depends_on:

@@ -15,6 +15,11 @@ public class MuteCommand extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+        if (!Objects.requireNonNull(event.getMember()).hasPermission(Permission.MANAGE_PERMISSIONS)) {
+            event.reply("You don't have the permission to use this command.").queue();
+            return;
+        }
+
         if (event.getName().equals("mute")) {
             Member member = Objects.requireNonNull(event.getOption("user")).getAsMember();
             long duration = parseDuration(Objects.requireNonNull(event.getOption("duration")).getAsString());

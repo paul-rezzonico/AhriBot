@@ -1,7 +1,7 @@
 package com.paulrezzonico;
 
-import com.paulrezzonico.command.PatCommand;
-import com.paulrezzonico.command.RandomQuoteCommand;
+import com.paulrezzonico.command.casual.PatCommand;
+import com.paulrezzonico.command.ahri.RandomQuoteCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
@@ -50,7 +50,10 @@ public class Main {
         jda.updateCommands().addCommands(
                 Commands.slash("quote", "Get a random quote from Ahri"),
                 Commands.slash("pat", "Pat someone")
-                        .addOption(OptionType.USER, "user", "The user to pat", true)
+                        .addOption(OptionType.USER, "user", "The user to pat", true),
+                Commands.slash("mute", "Mute a user")
+                        .addOption(OptionType.USER, "user", "The user to mute", true)
+                        .addOption(OptionType.INTEGER, "duration", "The duration of the mute in minutes", true)
         ).queue();
     }
 }

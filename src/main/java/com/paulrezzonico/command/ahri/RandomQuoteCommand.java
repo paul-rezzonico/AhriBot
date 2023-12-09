@@ -1,4 +1,4 @@
-package com.paulrezzonico.command;
+package com.paulrezzonico.command.ahri;
 
 import com.paulrezzonico.util.QuoteManager;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;

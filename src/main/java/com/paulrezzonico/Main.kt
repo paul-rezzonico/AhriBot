@@ -34,14 +34,14 @@ open class Main {
     @Throws(Exception::class)
     open fun jda(): JDA {
         val jda = JDABuilder.createDefault(token)
-                .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
-                .addEventListeners(
-                        randomQuoteCommand,
-                        patCommand,
-                        muteCommand
-                )
-                .build()
-                .awaitReady()
+            .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
+            .addEventListeners(
+                randomQuoteCommand,
+                patCommand,
+                muteCommand
+            )
+            .build()
+            .awaitReady()
 
         registerSlashCommands(jda)
         return jda
@@ -49,12 +49,12 @@ open class Main {
 
     private fun registerSlashCommands(jda: JDA) {
         jda.updateCommands().addCommands(
-                Commands.slash("quote", "Get a random quote from Ahri"),
-                Commands.slash("pat", "Pat someone")
-                        .addOption(OptionType.USER, "user", "The user to pat", true),
-                Commands.slash("mute", "Mute a user")
-                        .addOption(OptionType.USER, "user", "The user to mute", true)
-                        .addOption(OptionType.INTEGER, "duration", "The duration of the mute in minutes", true)
+            Commands.slash("quote", "Get a random quote from Ahri"),
+            Commands.slash("pat", "Pat someone")
+                .addOption(OptionType.USER, "user", "The user to pat", true),
+            Commands.slash("mute", "Mute a user")
+                .addOption(OptionType.USER, "user", "The user to mute", true)
+                .addOption(OptionType.INTEGER, "duration", "The duration of the mute in minutes", true)
         ).queue()
     }
 

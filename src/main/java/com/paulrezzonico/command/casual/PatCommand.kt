@@ -12,8 +12,7 @@ class PatCommand : ListenerAdapter() {
         val embed = EmbedBuilder()
         if (event.name == "pat") {
             val userName = event.getOption("user")!!.asUser.asMention
-            val gifUrl =
-                    "https://media.tenor.com/mecnd_qE8p8AAAAd/anime-pat.gif"
+            val gifUrl = "https://media.tenor.com/mecnd_qE8p8AAAAd/anime-pat.gif"
 
             embed.setColor(Color.PINK)
             embed.setDescription("Patting $userName")

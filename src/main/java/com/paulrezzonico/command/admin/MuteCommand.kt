@@ -39,13 +39,13 @@ class MuteCommand : ListenerAdapter() {
 
     private fun handleMute(channel: TextChannel, member: Member, duration: Long, event: SlashCommandInteractionEvent) {
         channel.upsertPermissionOverride(member)
-                .deny(Permission.MESSAGE_SEND)
-                .queue()
+            .deny(Permission.MESSAGE_SEND)
+            .queue()
 
         event.jda.rateLimitPool.schedule({
             channel.upsertPermissionOverride(member)
-                    .clear(Permission.MESSAGE_SEND)
-                    .queue()
+                .clear(Permission.MESSAGE_SEND)
+                .queue()
         }, duration, TimeUnit.MINUTES)
     }
 

@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.dv8tion:JDA:5.0.0-beta.17")
+    implementation("net.dv8tion:JDA:5.0.0-beta.21")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("com.github.cloudyrock.mongock:mongock-spring-v5:4.3.8")

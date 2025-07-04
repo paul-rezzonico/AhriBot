@@ -1,5 +1,6 @@
 package com.paulrezzonico
 
+import io.mongock.runner.springboot.EnableMongock
 import com.paulrezzonico.command.admin.MuteCommand
 import com.paulrezzonico.command.ahri.RandomQuoteCommand
 import com.paulrezzonico.command.casual.PatCommand
@@ -15,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.scheduling.annotation.EnableScheduling
 
+@EnableMongock
 @SpringBootApplication
 @EnableScheduling
 open class Main {

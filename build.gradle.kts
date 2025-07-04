@@ -3,6 +3,7 @@ plugins {
     id("org.springframework.boot") version "3.1.5"
     id("org.jetbrains.kotlin.jvm") version "2.2.0"
     id("org.sonarqube") version "5.0.0.4638"
+    id("org.jetbrains.kotlinx.kover") version "0.9.1"
 }
 
 apply(plugin = "io.spring.dependency-management")

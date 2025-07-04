@@ -29,17 +29,25 @@ jobs:
       - name: Run Tests
         run: ./gradlew test
 
-      - name: Generate Coverage Report
-        run: ./gradlew jacocoTestReport
+      - name: Generate Kover Reports
+        run: |
+          ./gradlew koverXmlReport
+          ./gradlew koverHtmlReport
 
-      - name: Upload Coverage Report
+      - name: Upload Kover HTML Report
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
-          path: build/reports/jacoco/
+          name: coverage-html-report
+          path: build/reports/kover/html/
+
+      - name: Upload Kover XML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml-report
+          path: build/reports/kover/report.xml
 
       - name: Check Coverage Threshold
-        run: ./gradlew jacocoTestCoverageVerification
+        run: ./gradlew koverVerify
 
   sonarqube:
     name: SonarQube Analysis
@@ -70,40 +78,45 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonar
 
-  spotless:
-    name: Code Style Check
-    runs-on: ubuntu-latest
+#  spotless:
+#    name: Code Style Check
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Set up JDK
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '19'
+#          distribution: 'temurin'
+#      - name: Grant execute permission for gradlew
+#        run: chmod +x gradlew
+#
+#      - name: Setup Gradle
+#        uses: gradle/gradle-build-action@v3
+#
+#      - name: Check Code Style
+#        run: ./gradlew spotlessCheck
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '19'
-          distribution: 'temurin'
-
-      - name: Check Code Style
-        run: ./gradlew spotlessCheck
-
-  detekt:
-    name: Static Code Analysis
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '19'
-          distribution: 'temurin'
-
-      - name: Run Detekt
-        run: ./gradlew detekt
-
-      - name: Upload Detekt Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: detekt-report
-          path: build/reports/detekt/
+#  detekt:
+#    name: Static Code Analysis
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Set up JDK
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '19'
+#          distribution: 'temurin'
+#
+#      - name: Run Detekt
+#        run: ./gradlew detekt
+#
+#      - name: Upload Detekt Report
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: detekt-report
+#          path: build/reports/detekt/

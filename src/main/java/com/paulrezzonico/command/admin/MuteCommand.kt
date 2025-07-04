@@ -49,11 +49,10 @@ class MuteCommand : ListenerAdapter() {
         }, duration, TimeUnit.MINUTES)
     }
 
-
     private fun parseDuration(durationStr: String): Long {
         return try {
             durationStr.toLong()
-        } catch (e: NumberFormatException) {
+        } catch (_: NumberFormatException) {
             -1
         }
     }

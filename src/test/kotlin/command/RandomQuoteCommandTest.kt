@@ -1,3 +1,5 @@
+package command
+
 import com.paulrezzonico.command.ahri.RandomQuoteCommand
 import com.paulrezzonico.util.QuoteManager
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent

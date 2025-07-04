@@ -1,7 +1,7 @@
 plugins {
     java
     id("org.springframework.boot") version "3.1.5"
-    id("org.jetbrains.kotlin.jvm") version "2.2.0"
+    id("org.jetbrains.kotlin.jvm") version "1.9.22"
     id("org.sonarqube") version "5.0.0.4638"
     id("org.jetbrains.kotlinx.kover") version "0.9.1"
     id("io.gitlab.arturbosch.detekt") version "1.23.5"
@@ -22,8 +22,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("io.mongock:mongodb-springdata-v4-driver:5.5.1")
     implementation("io.mongock:mongock-springboot:5.5.1")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.0")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:2.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
@@ -53,11 +53,13 @@ detekt {
     config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
     baseline = file("$projectDir/config/detekt/baseline.xml")
 
-    reports {
-        html.required.set(true)
-        xml.required.set(true)
-        txt.required.set(false)
-        sarif.required.set(true)
+    tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+        reports {
+            html.required.set(true)
+            xml.required.set(true)
+            txt.required.set(false)
+            sarif.required.set(true)
+        }
     }
 }
 

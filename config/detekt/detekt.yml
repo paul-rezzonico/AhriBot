@@ -9,7 +9,3 @@ complexity:
     thresholdInFiles: 20
     thresholdInClasses: 15
     thresholdInInterfaces: 10
-
-formatting:
-  MaximumLineLength:
-    maxLineLength: 120

@@ -2,7 +2,7 @@ package com.paulrezzonico
 
 import io.mongock.runner.springboot.EnableMongock
 import com.paulrezzonico.command.admin.MuteCommand
-import com.paulrezzonico.command.ahri.RandomQuoteCommand
+import com.paulrezzonico.command.ahri.quote.RandomQuoteCommand
 import com.paulrezzonico.command.casual.PatCommand
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder

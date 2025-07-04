@@ -17,10 +17,10 @@ dependencies {
     implementation("net.dv8tion:JDA:5.6.1")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation("io.mongock:mongock-springboot-v3:5.3.4")
-    implementation("io.mongock:mongodb-springdata-v4-driver:5.3.4")
-    implementation("io.mongock:mongock-springboot:5.3.4")
+    implementation("io.mongock:mongodb-springdata-v4-driver:5.5.1")
+    implementation("io.mongock:mongock-springboot:5.5.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.2.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))

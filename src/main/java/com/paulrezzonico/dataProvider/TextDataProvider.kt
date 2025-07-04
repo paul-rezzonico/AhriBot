@@ -10,6 +10,8 @@ import java.util.*
 
 @Component
 class TextDataProvider : IDataProvider {
+
+    @Suppress("TooGenericExceptionCaught")
     override fun getData(path: String): List<String> {
         val data: MutableList<String> = ArrayList()
         try {

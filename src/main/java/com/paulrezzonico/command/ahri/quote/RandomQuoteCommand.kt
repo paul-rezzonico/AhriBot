@@ -1,19 +1,16 @@
-package com.paulrezzonico.command.ahri
+package com.paulrezzonico.command.ahri.quote
 
-import com.paulrezzonico.util.QuoteManager
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class RandomQuoteCommand : ListenerAdapter() {
-    @Autowired
-    private val quoteManager: QuoteManager? = null
-
+class RandomQuoteCommand(
+    private val quoteService: QuoteService
+) : ListenerAdapter() {
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
         if (event.name == "quote") {
-            val quote = quoteManager!!.randomQuote
+            val quote = quoteService.getRandomQuote()
             event.reply("*$quote*").queue()
         }
     }

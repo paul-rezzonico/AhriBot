@@ -24,6 +24,7 @@ dependencies {
     implementation("io.mongock:mongock-springboot:5.5.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
+    implementation("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))

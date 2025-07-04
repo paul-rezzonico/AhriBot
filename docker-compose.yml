@@ -20,7 +20,7 @@ services:
     build: .
     container_name: discordbot
     environment:
-      SPRING_DATA_MONGODB_URI: mongodb://root:password@mongodb:27017/ahribot
+      SPRING_DATA_MONGODB_URI: mongodb://root:password@mongodb:27017/ahribot?authSource=admin
       SPRING_DEVTOOLS_ADD_PROPERTIES: "false"
     depends_on:
       mongodb:

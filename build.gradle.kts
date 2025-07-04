@@ -29,7 +29,6 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     "developmentOnly"("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.springframework.boot:spring-boot-docker-compose")
 
 }
 

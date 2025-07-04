@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "2.2.0"
     id("org.sonarqube") version "5.0.0.4638"
     id("org.jetbrains.kotlinx.kover") version "0.9.1"
+    id("io.gitlab.arturbosch.detekt") version "1.23.5"
 }
 
 apply(plugin = "io.spring.dependency-management")
@@ -45,3 +46,18 @@ sonar {
         property("sonar.projectName", "AhriBot")
     }
 }
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
+    baseline = file("$projectDir/config/detekt/baseline.xml")
+
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        txt.required.set(false)
+        sarif.required.set(true)
+    }
+}
+

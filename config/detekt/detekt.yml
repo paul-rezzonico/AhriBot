@@ -1,0 +1,15 @@
+style:
+  MaxLineLength:
+    maxLineLength: 120
+
+complexity:
+  LongMethod:
+    threshold: 60
+  TooManyFunctions:
+    thresholdInFiles: 20
+    thresholdInClasses: 15
+    thresholdInInterfaces: 10
+
+formatting:
+  MaximumLineLength:
+    maxLineLength: 120

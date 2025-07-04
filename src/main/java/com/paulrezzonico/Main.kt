@@ -19,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableMongock
 @SpringBootApplication
 @EnableScheduling
+@Suppress("SpreadOperator", "MemberNameEqualsClassName")
 open class Main {
     @Value("\${discord.bot.token}")
     private val token: String? = null

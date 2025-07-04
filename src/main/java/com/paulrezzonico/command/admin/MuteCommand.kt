@@ -11,30 +11,35 @@ import java.util.concurrent.TimeUnit
 @Component
 class MuteCommand : ListenerAdapter() {
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
-        if (!event.member!!.hasPermission(Permission.MANAGE_PERMISSIONS)) {
-            event.reply("You don't have the permission to use this command.").queue()
+        if (isNotAllowed(event)) return
+        if (event.name != "mute") return
+        handleMuteCommand(event)
+    }
+
+    private fun handleMuteCommand(event: SlashCommandInteractionEvent) {
+        val member = event.getOption("user")!!.asMember
+        val duration = parseDuration(event.getOption("duration")!!.asString)
+
+        if (member == null || duration <= 0) {
+            event.reply("User not found or invalid duration.").queue()
             return
         }
 
-        if (event.name == "mute") {
-            val member = event.getOption("user")!!.asMember
-            val duration = parseDuration(event.getOption("duration")!!.asString)
-
-            if (member != null && duration > 0) {
-                val guild = event.guild
-                if (guild != null) {
-                    for (channel in guild.channels) {
-                        if (channel is TextChannel) {
-                            handleMute(channel, member, duration, event)
-                        }
-                    }
-
-                    event.reply("Muted " + member.asMention + " for " + duration + " minutes.").queue()
-                }
-            } else {
-                event.reply("User not found or invalid duration.").queue()
+        val guild = event.guild ?: return
+        for (channel in guild.channels) {
+            if (channel is TextChannel) {
+                handleMute(channel, member, duration, event)
             }
         }
+        event.reply("Muted ${member.asMention} for $duration minutes.").queue()
+    }
+
+    private fun isNotAllowed(event: SlashCommandInteractionEvent): Boolean {
+        if (!event.member!!.hasPermission(Permission.MANAGE_PERMISSIONS)) {
+            event.reply("You don't have the permission to use this command.").queue()
+            return true
+        }
+        return false
     }
 
     private fun handleMute(channel: TextChannel, member: Member, duration: Long, event: SlashCommandInteractionEvent) {

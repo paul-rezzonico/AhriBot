@@ -35,7 +35,7 @@ class StatusChangelog {
             "Captivating hearts with melodies."
         )
         statusData.forEachIndexed { index, status ->
-            val document = Document("_id", index + 1).append("name", status)
+            val document = Document("_id", index + 1).append("status", status)
             statusCollection.insertOne(document)
         }
     }

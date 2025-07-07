@@ -1,4 +1,4 @@
-package integration.config
+package integration
 
 import net.dv8tion.jda.api.JDA
 import org.mockito.Mockito

@@ -1,5 +1,6 @@
 package com.paulrezzonico
 
+import com.paulrezzonico.command.admin.KickCommand
 import io.mongock.runner.springboot.EnableMongock
 import com.paulrezzonico.command.admin.MuteCommand
 import com.paulrezzonico.command.ahri.quote.RandomQuoteCommand
@@ -33,6 +34,9 @@ open class Main {
     @Autowired
     private val muteCommand: MuteCommand? = null
 
+    @Autowired
+    private val kickCommand: KickCommand? = null
+
     @Bean
     @Throws(Exception::class)
     open fun jda(): JDA {
@@ -41,7 +45,8 @@ open class Main {
             .addEventListeners(
                 randomQuoteCommand,
                 patCommand,
-                muteCommand
+                muteCommand,
+                kickCommand,
             )
             .build()
             .awaitReady()
@@ -57,7 +62,9 @@ open class Main {
                 .addOption(OptionType.USER, "user", "The user to pat", true),
             Commands.slash("mute", "Mute a user")
                 .addOption(OptionType.USER, "user", "The user to mute", true)
-                .addOption(OptionType.INTEGER, "duration", "The duration of the mute in minutes", true)
+                .addOption(OptionType.INTEGER, "duration", "The duration of the mute in minutes", true),
+            Commands.slash("kick", "Kick a user")
+                .addOption(OptionType.USER, "user", "The user to kick", true),
         ).queue()
     }
 

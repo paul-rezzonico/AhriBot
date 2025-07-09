@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 @Component
 class MuteCommand : ListenerAdapter() {
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
-        if (isNotAllowed(event)) return
+        if (AdminPermissionUtils.isNotAdmin(event)) return
         if (event.name != "mute") return
         handleMuteCommand(event)
     }
@@ -21,7 +21,7 @@ class MuteCommand : ListenerAdapter() {
         val duration = parseDuration(event.getOption("duration")!!.asString)
 
         if (member == null || duration <= 0) {
-            event.reply("User not found or invalid duration.").queue()
+            event.reply("User not found or invalid duration.").setEphemeral(true).queue()
             return
         }
 
@@ -32,14 +32,6 @@ class MuteCommand : ListenerAdapter() {
             }
         }
         event.reply("Muted ${member.asMention} for $duration minutes.").queue()
-    }
-
-    private fun isNotAllowed(event: SlashCommandInteractionEvent): Boolean {
-        if (!event.member!!.hasPermission(Permission.MANAGE_PERMISSIONS)) {
-            event.reply("You don't have the permission to use this command.").queue()
-            return true
-        }
-        return false
     }
 
     private fun handleMute(channel: TextChannel, member: Member, duration: Long, event: SlashCommandInteractionEvent) {

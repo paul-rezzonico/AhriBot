@@ -63,6 +63,7 @@ class MuteCommandTest {
 
         val replyAction = Mockito.mock(ReplyCallbackAction::class.java)
         `when`(event.reply(ArgumentMatchers.any<String>())).thenReturn(replyAction)
+        `when`(replyAction.setEphemeral(true)).thenReturn(replyAction)
     }
 
     @Test
@@ -88,7 +89,7 @@ class MuteCommandTest {
         // Exécute la commande
         muteCommand.onSlashCommandInteraction(event)
 
-        Mockito.verify(event).reply("You don't have the permission to use this command.")
+        Mockito.verify(event).reply("You do not have permissions to use this command.")
         Mockito.verify(channel, Mockito.never()).upsertPermissionOverride(ArgumentMatchers.any())
     }
 

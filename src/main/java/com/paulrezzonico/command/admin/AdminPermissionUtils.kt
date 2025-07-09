@@ -12,7 +12,7 @@ object AdminPermissionUtils {
      */
     fun isNotAdmin(event: SlashCommandInteractionEvent): Boolean {
         if (!event.member!!.hasPermission(Permission.MANAGE_PERMISSIONS)) {
-            event.reply("Vous n'avez pas la permission d'utiliser cette commande.").queue()
+            event.reply("You do not have permissions to use this command.").setEphemeral(true).queue()
             return true
         }
         return false

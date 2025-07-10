@@ -12,6 +12,11 @@ class PatCommand : ListenerAdapter() {
         val embed = EmbedBuilder()
         if (event.name == "pat") {
             val userName = event.getOption("user")!!.asUser.asMention
+            if (userName.isNotBlank()) {
+                embed.setAuthor(event.user.asTag, null, event.user.effectiveAvatarUrl)
+            } else {
+                embed.setAuthor("Unknown User", null, event.user.effectiveAvatarUrl)
+            }
             val gifUrl = "https://media.tenor.com/mecnd_qE8p8AAAAd/anime-pat.gif"
 
             embed.setColor(Color.PINK)

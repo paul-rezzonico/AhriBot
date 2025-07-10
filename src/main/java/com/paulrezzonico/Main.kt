@@ -1,5 +1,6 @@
 package com.paulrezzonico
 
+import com.paulrezzonico.command.admin.BanCommand
 import com.paulrezzonico.command.admin.KickCommand
 import io.mongock.runner.springboot.EnableMongock
 import com.paulrezzonico.command.admin.MuteCommand
@@ -37,6 +38,9 @@ open class Main {
     @Autowired
     private val kickCommand: KickCommand? = null
 
+    @Autowired
+    private val banCommand: BanCommand? = null
+
     @Bean
     @Throws(Exception::class)
     open fun jda(): JDA {
@@ -47,6 +51,7 @@ open class Main {
                 patCommand,
                 muteCommand,
                 kickCommand,
+                banCommand,
             )
             .build()
             .awaitReady()
@@ -65,6 +70,10 @@ open class Main {
                 .addOption(OptionType.INTEGER, "duration", "The duration of the mute in minutes", true),
             Commands.slash("kick", "Kick a user")
                 .addOption(OptionType.USER, "user", "The user to kick", true),
+            Commands.slash("ban", "Ban a user")
+                .addOption(OptionType.USER, "user", "The user to ban", true)
+                .addOption(OptionType.STRING, "reason", "The reason for the ban", false)
+                .addOption(OptionType.INTEGER, "deletion-days", "Number of days of messages to delete (0-7)", false)
         ).queue()
     }
 

@@ -1,6 +1,6 @@
 package unit.command.ahri.quote
 
-import com.paulrezzonico.command.ahri.quote.QuoteService
+import com.paulrezzonico.service.quote.QuoteService
 import com.paulrezzonico.command.ahri.quote.RandomQuoteCommand
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction

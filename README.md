@@ -56,9 +56,9 @@ miss.
 
 | Command | Description | Usage | implemented |
 | --- | --- | --- | - |
-| `!ban` | Ban a user from the server | `!ban <user> <reason>` | ❌ |
-| `!kick` | Kick a user from the server | `!kick <user> <reason>` | ❌ |
-| `!mute` | Mute a user | `!mute <user> <duration> <reason>` | ❌ | 
+| `!ban` | Ban a user from the server | `!ban <user> <reason>` | 🔄 |
+| `!kick` | Kick a user from the server | `!kick <user> <reason>` | 🔄 |
+| `!mute` | Mute a user | `!mute <user> <duration> <reason>` | 🔄 | 
 | `!unmute` | Unmute a user | `!unmute <user>` | ❌ |
 | `!clear` | Clear a number of messages | `!clear <number>` | ❌ |
 | `!setmuterole` | Set the mute role | `!setmuterole <role>` | 🔄 |

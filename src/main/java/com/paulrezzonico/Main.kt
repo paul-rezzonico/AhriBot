@@ -5,7 +5,7 @@ import com.paulrezzonico.command.admin.KickCommand
 import io.mongock.runner.springboot.EnableMongock
 import com.paulrezzonico.command.admin.MuteCommand
 import com.paulrezzonico.command.ahri.quote.RandomQuoteCommand
-import com.paulrezzonico.command.casual.PatCommand
+import com.paulrezzonico.command.casual.pat.PatCommand
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.interactions.commands.OptionType

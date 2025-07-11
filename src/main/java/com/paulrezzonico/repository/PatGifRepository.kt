@@ -1,12 +1,11 @@
 package com.paulrezzonico.repository
 
+import com.paulrezzonico.entity.PatGif
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
-import java.net.URL
-import java.util.UUID
+import java.util.*
 
 @Repository
-interface PatGifRepository : MongoRepository<URL, UUID> {
-    fun findByUrl(url: String): URL?
-    fun deleteByUrl(url: String): Long
+interface PatGifRepository : MongoRepository<PatGif, UUID> {
+    override fun findAll(): List<PatGif>
 }

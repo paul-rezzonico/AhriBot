@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class RandomQuoteCommand(
-    private val quoteService: QuoteService
+    private val quoteService: QuoteService,
 ) : ListenerAdapter() {
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
         if (event.name == "quote") {

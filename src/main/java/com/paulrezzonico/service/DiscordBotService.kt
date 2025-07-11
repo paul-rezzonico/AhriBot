@@ -1,4 +1,4 @@
-package com.paulrezzonico.services
+package com.paulrezzonico.service
 
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Activity

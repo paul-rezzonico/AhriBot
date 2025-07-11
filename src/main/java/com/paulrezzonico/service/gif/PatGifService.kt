@@ -1,4 +1,4 @@
-package com.paulrezzonico.command.casual.pat
+package com.paulrezzonico.service.gif
 
 import com.paulrezzonico.repository.PatGifRepository
 import com.paulrezzonico.service.mongo.RandomMongoEntityService

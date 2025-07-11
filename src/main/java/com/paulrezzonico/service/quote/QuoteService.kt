@@ -1,4 +1,4 @@
-package com.paulrezzonico.command.ahri.quote
+package com.paulrezzonico.service.quote
 
 interface QuoteService {
     fun getRandomQuote(): String

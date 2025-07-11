@@ -1,5 +1,6 @@
 package com.paulrezzonico.command.ahri.quote
 
+import com.paulrezzonico.service.quote.QuoteService
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component

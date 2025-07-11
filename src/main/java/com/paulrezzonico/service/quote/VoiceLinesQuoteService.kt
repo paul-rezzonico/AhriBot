@@ -1,4 +1,4 @@
-package com.paulrezzonico.command.ahri.quote
+package com.paulrezzonico.service.quote
 
 import com.paulrezzonico.repository.VoiceLinesRepository
 import com.paulrezzonico.service.mongo.RandomMongoEntityService

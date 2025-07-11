@@ -1,5 +1,6 @@
 package com.paulrezzonico.command.casual.pat
 
+import com.paulrezzonico.service.gif.PatGifService
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter

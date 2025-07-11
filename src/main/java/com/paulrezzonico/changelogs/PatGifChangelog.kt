@@ -5,6 +5,7 @@ import io.mongock.api.annotations.Execution
 import io.mongock.api.annotations.RollbackExecution
 import org.bson.Document
 import org.springframework.data.mongodb.core.MongoTemplate
+import java.util.UUID
 
 @ChangeUnit(id = "pat-gif-changelog", order = "003", author = "Paul REZZONICO")
 class PatGifChangelog {
@@ -20,8 +21,8 @@ class PatGifChangelog {
             "https://example.com/pat_gif_1.gif",
             // TODO add actual URLs for pat gifs
         )
-        patGifsData.forEachIndexed { index, url ->
-            val document = Document("_id", index + 1).append("url", url)
+        patGifsData.forEach { url ->
+            val document = Document("_id", UUID.randomUUID()).append("url", url)
             patGifCollection.insertOne(document)
         }
     }

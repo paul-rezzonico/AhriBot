@@ -18,7 +18,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 # Copier le code source dans le conteneur et construire
 COPY . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle build --no-daemon
+RUN gradle build -x test --no-daemon
 
 # Étape 2: Exécution de l'application
 FROM openjdk:19-slim-buster

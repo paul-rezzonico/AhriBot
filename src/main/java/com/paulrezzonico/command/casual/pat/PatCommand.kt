@@ -13,17 +13,18 @@ class PatCommand(
 ) : ListenerAdapter() {
 
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
-        val gifUrl = patGifService.getRandomGifUrl()
-        val embed = EmbedBuilder()
         if (event.name == "pat") {
+            val gifUrl = patGifService.getRandomGifUrl()
+            val embed = EmbedBuilder()
+
             val userName = event.getOption("user")!!.asUser.asMention
             if (userName.isNotBlank()) {
-                embed.setAuthor(event.user.asTag, null, event.user.effectiveAvatarUrl)
+                embed.setAuthor(event.user.name, null, event.user.effectiveAvatarUrl)
             } else {
                 embed.setAuthor("", null, event.user.effectiveAvatarUrl)
             }
             embed.setColor(Color.PINK)
-            embed.setDescription("**${event.user.asTag}** pats **$userName**")
+            embed.setDescription("**${event.user.name}** pats **$userName**")
             embed.setImage(gifUrl)
 
             event.replyEmbeds(embed.build()).queue()

@@ -32,7 +32,7 @@ class StatusChangelog {
             "Meditating on the mysteries of the universe.",
             "Paying homage to the Moon.",
             "Journeying through the spirit realm.",
-            "Captivating hearts with melodies."
+            "Captivating hearts with melodies.",
         )
         statusData.forEachIndexed { index, status ->
             val document = Document("_id", index + 1).append("status", status)

@@ -6,12 +6,12 @@ import io.mongock.runner.springboot.EnableMongock
 import com.paulrezzonico.command.admin.MuteCommand
 import com.paulrezzonico.command.ahri.quote.RandomQuoteCommand
 import com.paulrezzonico.command.casual.pat.PatCommand
+import com.paulrezzonico.command.information.PingCommand
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.Commands
 import net.dv8tion.jda.api.requests.GatewayIntent
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -22,24 +22,16 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @SpringBootApplication
 @EnableScheduling
 @Suppress("SpreadOperator", "MemberNameEqualsClassName")
-open class Main {
+open class Main(
+    private val randomQuoteCommand: RandomQuoteCommand,
+    private val patCommand: PatCommand,
+    private val muteCommand: MuteCommand,
+    private val kickCommand: KickCommand,
+    private val banCommand: BanCommand,
+    private val pingCommand: PingCommand,
+) {
     @Value("\${discord.bot.token}")
     private val token: String? = null
-
-    @Autowired
-    private val randomQuoteCommand: RandomQuoteCommand? = null
-
-    @Autowired
-    private val patCommand: PatCommand? = null
-
-    @Autowired
-    private val muteCommand: MuteCommand? = null
-
-    @Autowired
-    private val kickCommand: KickCommand? = null
-
-    @Autowired
-    private val banCommand: BanCommand? = null
 
     @Bean
     @Throws(Exception::class)
@@ -52,6 +44,7 @@ open class Main {
                 muteCommand,
                 kickCommand,
                 banCommand,
+                pingCommand,
             )
             .build()
             .awaitReady()
@@ -73,7 +66,8 @@ open class Main {
             Commands.slash("ban", "Ban a user")
                 .addOption(OptionType.USER, "user", "The user to ban", true)
                 .addOption(OptionType.STRING, "reason", "The reason for the ban", false)
-                .addOption(OptionType.INTEGER, "deletion-days", "Number of days of messages to delete (0-7)", false)
+                .addOption(OptionType.INTEGER, "deletion-days", "Number of days of messages to delete (0-7)", false),
+            Commands.slash("ping", "Check the bot's latency"),
         ).queue()
     }
 

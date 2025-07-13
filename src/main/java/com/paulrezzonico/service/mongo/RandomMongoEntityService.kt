@@ -6,6 +6,7 @@ import kotlin.random.Random
 
 @Service
 class RandomMongoEntityService {
+    @Suppress("ForbiddenComment")
     // TODO: Find a way to avoid loading all entities into memory
     fun <T, ID> getRandomEntityFromRepository(repository: MongoRepository<T, ID>): T? {
         val all: List<T> = repository.findAll()

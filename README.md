@@ -27,7 +27,7 @@
   - [Games and entertainment](#games-and-entertainment)
   - [Informations](#informations)
   - [Music](#music)
-  - [Member interaction](#members-interaction)
+  - [Member interaction](#member-interaction)
   - [Other](#other)
 - [Roadmap](#roadmap) 
 - [Technologies Used](#technologies-used)
@@ -55,7 +55,7 @@ miss.
 ### Moderation
 
 | Command | Description | Usage | implemented |
-| --- | --- | --- | - |
+| --- | --- | --- | --- |
 | `/ban` | Ban a user from the server | `/ban <user> <reason> <deletion-days>` | ✅ |
 | `/kick` | Kick a user from the server | `/kick <user> <reason>` | ✅ |
 | `/mute` | Mute a user | `/mute <user> <duration> <reason>` | ✅ | 

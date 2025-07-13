@@ -61,6 +61,7 @@ miss.
 | `/mute` | Mute a user | `/mute <user> <duration> <reason>` | ✅ | 
 | `/unmute` | Unmute a user | `/unmute <user>` | ❌ |
 | `/clear` | Clear a number of messages | `/clear <number>` | ❌ |
+| `/moovemessages` | Move messages from one channel to another | `/moovemessages <source-channel> <target-channel> <number>` | ❌ |
 | `/setmuterole` | Set the mute role | `/setmuterole <role>` | 🔄 |
 
 ### Members
@@ -118,9 +119,9 @@ miss.
 
 | Command | Description | Usage | implemented |
 | --- | --- | --- | --- |
-| `/help` | Display the help message | `/help` | ❌ |
-| `/ping` | Display the bot ping | `/ping` | ❌ |
-| `/invite` | Display the bot invite link | `/invite` | ❌ |
+| `/help` | Display the help message | `/help` | 🔄 |
+| `/ping` | Display the bot ping | `/ping` | ✅ |
+| `/invite` | Display the bot invite link | `/invite` | 🔄 |
 | `/stats` | Display the bot stats | `/stats` | ❌ |
 | `/quote` | Display a random quote from Ahri | `/quote` | ✅ |
 

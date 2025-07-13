@@ -1,6 +1,7 @@
-package com.paulrezzonico.services
+package com.paulrezzonico.service.status
 
 import com.paulrezzonico.repository.StatusRepository
+import com.paulrezzonico.service.DiscordBotService
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 

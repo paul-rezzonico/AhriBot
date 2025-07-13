@@ -1,6 +1,6 @@
 package integration.command.ahri.quote
 
-import com.paulrezzonico.command.ahri.quote.VoiceLinesQuoteService
+import com.paulrezzonico.service.quote.VoiceLinesQuoteService
 import com.paulrezzonico.repository.VoiceLinesRepository
 import integration.AbstractIntegrationTest
 import org.junit.jupiter.api.Test

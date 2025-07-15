@@ -22,7 +22,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableMongock
 @SpringBootApplication
 @EnableScheduling
-@Suppress("SpreadOperator", "MemberNameEqualsClassName")
+@Suppress("SpreadOperator", "MemberNameEqualsClassName", "LongParameterList")
 open class Main(
     private val randomQuoteCommand: RandomQuoteCommand,
     private val patCommand: PatCommand,

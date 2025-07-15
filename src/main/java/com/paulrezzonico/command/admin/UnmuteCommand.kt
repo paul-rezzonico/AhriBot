@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component
 
 @Component
-class UnMuteCommand : ListenerAdapter() {
+class UnmuteCommand : ListenerAdapter() {
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
         if (AdminPermissionUtils.isNotAdmin(event)) return
         if (event.name != "unmute") return
@@ -21,12 +21,10 @@ class UnMuteCommand : ListenerAdapter() {
         }
 
         val guild = event.guild ?: return
-        for (channel in guild.channels) {
-            if (channel is net.dv8tion.jda.api.entities.channel.concrete.TextChannel) {
-                channel.upsertPermissionOverride(member)
-                    .clear(Permission.MESSAGE_SEND)
-                    .queue()
-            }
+        for (channel in guild.textChannels) {
+            channel.upsertPermissionOverride(member)
+                .clear(Permission.MESSAGE_SEND)
+                .queue()
         }
         event.reply("Unmuted ${member.asMention}.").queue()
     }

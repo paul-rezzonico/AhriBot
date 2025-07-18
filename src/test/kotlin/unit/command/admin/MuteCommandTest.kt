@@ -54,7 +54,7 @@ class MuteCommandTest {
         `when`(userOption.asMember).thenReturn(member)
         `when`(durationOption.asString).thenReturn("5")
 
-        `when`(guild.channels).thenReturn(listOf(channel))
+        `when`(guild.textChannels).thenReturn(listOf(channel))
 
         val permOverrideAction = Mockito.mock(PermissionOverrideAction::class.java)
         `when`(channel.upsertPermissionOverride(ArgumentMatchers.any())).thenReturn(permOverrideAction)

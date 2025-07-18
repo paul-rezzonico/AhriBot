@@ -26,10 +26,8 @@ class MuteCommand : ListenerAdapter() {
         }
 
         val guild = event.guild ?: return
-        for (channel in guild.channels) {
-            if (channel is TextChannel) {
-                handleMute(channel, member, duration, event)
-            }
+        for (channel in guild.textChannels) {
+            handleMute(channel, member, duration, event)
         }
         event.reply("Muted ${member.asMention} for $duration minutes.").queue()
     }

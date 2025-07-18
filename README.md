@@ -59,7 +59,7 @@ miss.
 | `/ban` | Ban a user from the server | `/ban <user> <reason> <deletion-days>` | ✅ |
 | `/kick` | Kick a user from the server | `/kick <user> <reason>` | ✅ |
 | `/mute` | Mute a user | `/mute <user> <duration> <reason>` | ✅ | 
-| `/unmute` | Unmute a user | `/unmute <user>` | ❌ |
+| `/unmute` | Unmute a user | `/unmute <user>` | ✅ |
 | `/clear` | Clear a number of messages | `/clear <number>` | ❌ |
 | `/moovemessages` | Move messages from one channel to another | `/moovemessages <source-channel> <target-channel> <number>` | ❌ |
 | `/setmuterole` | Set the mute role | `/setmuterole <role>` | 🔄 |

@@ -4,6 +4,7 @@ import com.paulrezzonico.command.admin.BanCommand
 import com.paulrezzonico.command.admin.KickCommand
 import io.mongock.runner.springboot.EnableMongock
 import com.paulrezzonico.command.admin.MuteCommand
+import com.paulrezzonico.command.admin.UnmuteCommand
 import com.paulrezzonico.command.ahri.quote.RandomQuoteCommand
 import com.paulrezzonico.command.casual.pat.PatCommand
 import com.paulrezzonico.command.information.PingCommand
@@ -21,11 +22,12 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableMongock
 @SpringBootApplication
 @EnableScheduling
-@Suppress("SpreadOperator", "MemberNameEqualsClassName")
+@Suppress("SpreadOperator", "MemberNameEqualsClassName", "LongParameterList")
 open class Main(
     private val randomQuoteCommand: RandomQuoteCommand,
     private val patCommand: PatCommand,
     private val muteCommand: MuteCommand,
+    private val unmuteCommand: UnmuteCommand,
     private val kickCommand: KickCommand,
     private val banCommand: BanCommand,
     private val pingCommand: PingCommand,
@@ -42,6 +44,7 @@ open class Main(
                 randomQuoteCommand,
                 patCommand,
                 muteCommand,
+                unmuteCommand,
                 kickCommand,
                 banCommand,
                 pingCommand,
@@ -61,6 +64,8 @@ open class Main(
             Commands.slash("mute", "Mute a user")
                 .addOption(OptionType.USER, "user", "The user to mute", true)
                 .addOption(OptionType.INTEGER, "duration", "The duration of the mute in minutes", true),
+            Commands.slash("unmute", "Unmute a user")
+                .addOption(OptionType.USER, "user", "The user to unmute", true),
             Commands.slash("kick", "Kick a user")
                 .addOption(OptionType.USER, "user", "The user to kick", true),
             Commands.slash("ban", "Ban a user")

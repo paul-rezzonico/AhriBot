@@ -1,11 +1,10 @@
 package com.paulrezzonico.command.admin
 
+import com.paulrezzonico.command.admin.Constants.MAX_REASON_LENGTH
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component
 import java.util.concurrent.TimeUnit
-
-private const val MAXIMUM_REASON_LENGTH = 512
 
 @Component
 class BanCommand : ListenerAdapter() {
@@ -29,8 +28,8 @@ class BanCommand : ListenerAdapter() {
             member.roles.any { it.isManaged } -> replyError(event, "You cannot ban a member with managed roles.")
             else -> {
                 val reason = event.getOption("reason")?.asString ?: "No reason provided"
-                if (reason.length > MAXIMUM_REASON_LENGTH) {
-                    replyError(event, "Reason is too long, must be 512 characters or less.")
+                if (reason.length > MAX_REASON_LENGTH) {
+                    replyError(event, "Reason is too long, must be $MAX_REASON_LENGTH characters or less.")
                     return
                 }
                 val deletionDays = event.getOption("deletion-days")?.asInt ?: 0

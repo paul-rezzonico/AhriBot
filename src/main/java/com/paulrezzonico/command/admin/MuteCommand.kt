@@ -20,7 +20,7 @@ class MuteCommand : ListenerAdapter() {
         val member = event.getOption("user")!!.asMember
         val duration = parseDuration(event.getOption("duration")!!.asString)
 
-        if (member == null || duration <= 0) {
+        if (member == null || isDurationInvalid(duration)) {
             event.reply("User not found or invalid duration.").setEphemeral(true).queue()
             return
         }
@@ -51,4 +51,7 @@ class MuteCommand : ListenerAdapter() {
             -1
         }
     }
+
+    private fun isDurationInvalid(duration: Long): Boolean =
+        duration < Constants.MIN_MUTE_DURATION || duration > Constants.MAX_MUTE_DURATION
 }

@@ -1,5 +1,5 @@
 # Étape 1: Base JDK 19 (utiliser une image basée sur Debian)
-FROM openjdk:19-rc-jdk-slim-bullseye AS jdk-base
+FROM openjdk:25-rc-jdk-slim-bullseye AS jdk-base
 
 # Installer wget et unzip
 RUN apt-get update \
@@ -21,6 +21,6 @@ WORKDIR /home/gradle/src
 RUN gradle build -x test --no-daemon
 
 # Étape 2: Exécution de l'application
-FROM openjdk:19-rc-jdk-slim-bullseye
+FROM openjdk:25-rc-jdk-slim-bullseye
 COPY --from=jdk-base /home/gradle/src/build/libs/*.jar /app/app.jar
 ENTRYPOINT ["java","-jar","/app/app.jar"]
